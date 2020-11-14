@@ -1,0 +1,29 @@
+<!-- Modal -->
+<div class="modal fade" id="plant-modal-<%= plant.id %>" tabindex="-1"
+  aria-labelledby="plant-modal-<%= plant.id %>Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= simple_form_for([plant, plant_label]) do |f| %>
+      <div class="modal-header">
+        <h5 class="modal-title" id="plant-modal-<%= plant.id %>Label">Add label to plant</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+        <div class="form-inputs">
+          <%= f.association :label, input_html: { multiple: true }, include_hidden: false  %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="form-actions">
+          <%= f.button :submit, class: 'btn btn-primary' %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
